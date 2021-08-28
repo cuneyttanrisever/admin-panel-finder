@@ -89,7 +89,6 @@ def calis():
         print "*"*40
         for j in bulun:
             print "[200] url = %s"%(j)
-while True:
-    yonlendirme=[]
-    bulun=[]
-    urlduzelt()
+
+
+urlduzelt()
