@@ -19,7 +19,7 @@ yonlendirme=[]
 bulun=[]
 def urlduzelt():
     global urlc
-    url=raw_input("Url giriniz // site adresini giriniz = ")
+    url=input("Url giriniz // site adresini giriniz = ")
     if "https" and "http" not in url[:5]:
         urls="http://"+url
         if "/" not in urls[-1:]:
@@ -45,50 +45,50 @@ def calis():
             res=rq.get(urld,timeout=30)
             rm=res.status_code
         
-            print "Denenen url = %s"%(urld)
+            print ("Denenen url = %s"%(urld))
             if rm == 302:
-                print ">>>>>[302] Admin Panel bulundu = %s <<<<<"%(urld)
+                print (">>>>>[302] Admin Panel bulundu = %s <<<<<"%(urld))
 
           
             if rm == 200:
-                print ">>>>>[200] Admin Panel bulundu = %s <<<<<"%(urld)
+                print (">>>>>[200] Admin Panel bulundu = %s <<<<<"%(urld))
                 bulun.append(urld)
             if rm == 301:
-                print ">>>>> [301] Admin Panel bulundu = %s <<<<<"%(urld)
+                print (">>>>> [301] Admin Panel bulundu = %s <<<<<"%(urld))
                 yonlendirme.append(urld)
         except requests.exceptions.RequestException as hata: 
-            print "url hatali boyke bir adres yok"
+            print ("url hatali boyke bir adres yok")
             sys.exit()
         except requests.exceptions.Timeout:
-            print "baglanti 30 sn gecti url atlandi "
+            print ("baglanti 30 sn gecti url atlandi ")
             continue
         except requests.exceptions.TooManyRedirects:
-            print "Baglanti kotu url atlandi"
+            print ("Baglanti kotu url atlandi")
             continue
         except requests.exceptions.HTTPError as hata1: 
-            print hata1
-            print "http hatasi url atlandi"
+            print (hata1)
+            print ("http hatasi url atlandi")
             continue
         except requests.exceptions.ConnectionError as hata2: 
-            print "baglanti hatasi url atlandi"
+            print ("baglanti hatasi url atlandi")
             continue
             
     if yonlendirme==[] and bulun==[]:
-        print " \nAdmin panel bulunamadi"
+        print (" \nAdmin panel bulunamadi")
     if yonlendirme !=[] and bulun!= []:
-        print "*"*40
+        print ("*"*40)
         for i in yonlendirme:
-            print "[301] url = %s"%(i)
+            print ("[301] url = %s"%(i))
         for j in bulun:
-            print "[200] url = %s"%(j)
+            print ("[200] url = %s"%(j))
     if yonlendirme !=[] and bulun==[]:
-        print "*"*40
+        print ("*"*40)
         for i in yonlendirme:
-            print "[301] url = %s"%(i)
+            print ("[301] url = %s"%(i))
     if yonlendirme==[] and bulun !=[]:
-        print "*"*40
+        print ("*"*40)
         for j in bulun:
-            print "[200] url = %s"%(j)
+            print ("[200] url = %s"%(j))
 
 
 urlduzelt()
